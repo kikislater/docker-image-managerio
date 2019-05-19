@@ -12,7 +12,8 @@ RUN useradd -u ${MANAGER_UID} manager && \
 
 USER manager
 
-RUN curl ${MIRROR}/${VERSION}/ManagerServer.tar.gz | tar xvz 
+RUN curl ${MIRROR}/${VERSION}/ManagerServer.tar.gz | tar xvz \
+    && echo $VERSION > version.txt
 
 CMD ["mono", "ManagerServer.exe","-port","8080","-path","/data"]
 

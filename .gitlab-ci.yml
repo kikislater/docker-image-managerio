@@ -13,8 +13,10 @@ before_script:
 build-application-image:
   stage: build
   script:
+    - APP_VERSION=$(curl https://www.manager.io/version.txt)
     - >
-        docker build --pull 
+        docker build --pull
+        --build-arg VERSION=$APP_VERSION 
         --build-arg http_proxy=$http_proxy 
         --build-arg https_proxy=$https_proxy 
         . 
@@ -23,7 +25,7 @@ build-application-image:
 push-image:
   stage: deploy
   script:
-    - APP_VERSION=$(curl https://www.manager.io/version.txt)
+    - APP_VERSION=$(docker run CONTAINER_TEST_IMAGE cat version.txt)
     - echo $APP_NAME Version is $APP_VERSION
     - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_IMAGE_BASE:latest 
     - docker push $CONTAINER_RELEASE_IMAGE_BASE:latest
@@ -33,7 +35,7 @@ push-image:
 share-image:
   stage: deploy
   script:
-    - APP_VERSION=$(curl https://www.manager.io/version.txt)
+    - APP_VERSION=$(docker run CONTAINER_TEST_IMAGE cat version.txt)
     - echo Sharing $APP_NAME with Version $APP_VERSION
     - docker login -u "$CI_DOCKER_HUB_USER" -p "$CI_DOCKER_HUB_PASSWORD"
     - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_HUB_IMAGE_BASE:latest 
