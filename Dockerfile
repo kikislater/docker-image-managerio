@@ -3,7 +3,6 @@ FROM mono:latest
 ARG VERSION=22.8.30.345
 ARG MIRROR=https://github.com/Manager-io/Manager/releases/download
 ARG MANAGER_UID=1073
-RUN echo $VERSION $MIRROR $MANAGER_UID
 
 WORKDIR /usr/share/manager-server
 
