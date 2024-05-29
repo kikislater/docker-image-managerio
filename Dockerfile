@@ -1,6 +1,6 @@
 FROM mono:latest
 
-ARG VERSION=22.8.30.345
+ARG VERSION=24.5.29.1592 
 ARG MIRROR=https://github.com/Manager-io/Manager/releases/download
 ARG MANAGER_UID=1073
 
