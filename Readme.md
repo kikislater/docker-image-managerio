@@ -17,3 +17,9 @@ You can run this image as:
  docker run -v managerio_data:/data -p 80:8080 --name managerio giscan/managerio:latest
 ```
 
+docker compose
+-------
+```
+  docker compose build
+  docker compose up -d
+```
