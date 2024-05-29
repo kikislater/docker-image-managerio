@@ -1,0 +1,17 @@
+#version: "3"
+
+services:
+    managerio:
+        build:
+          context: ./
+          dockerfile: Dockerfile
+        volumes:
+            - data:/data
+        ports:
+            - 80:8080
+        container_name: managerio
+        image: giscan/managerio:latest
+
+volumes:
+    data:
+        name: managerio-data
