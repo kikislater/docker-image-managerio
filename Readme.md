@@ -23,3 +23,8 @@ docker compose
   docker compose build
   docker compose up -d
 ```
+
+
+Notes: 
+- no password on first setup
+- Release notes: https://www.manager.io/releases
